@@ -1,5 +1,4 @@
-﻿using System;
-using Core;
+﻿using Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +17,6 @@ public class LifeBarView : MonoBehaviour
     private void Awake()
     {
         _life = new Life();
-        _lifeBar.value = _life.CurrentValue;
     }
     
     private void Start()
@@ -30,14 +28,10 @@ public class LifeBarView : MonoBehaviour
     private void TakeHeal()
     {
         var healValue = _healValue.text;
-        _life.ReceiveHeal(Int32.Parse(healValue));
-        _lifeBar.value = _life.CurrentValue;
     }
     
     private void TakeDamage()
     {
         var damageValue = _attackValue.text;
-        _life.ReceiveDamage(Int32.Parse(damageValue));
-        _lifeBar.value = _life.CurrentValue;
     }
 }
