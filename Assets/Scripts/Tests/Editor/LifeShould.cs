@@ -1,23 +1,55 @@
-﻿using Core;
+﻿using System;
+using Core;
 using NUnit.Framework;
 
 namespace Tests.Editor
 {
     public class LifeShould // LifeShouldDecreaseOnHit
     {
+        private Life _life;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _life = new Life(); // given
+        }
+
         [Test]
         public void Heal()
         {
-            //given - Arrange
-            var life = new Life();
-
             //when - Act
-            life.Heal(11);
-            
+            _life.Heal(11);
+
             //then - assert
-            Assert.Greater(life.CurrentValue, 10);
-            
+            Assert.Greater(_life.CurrentValue, 10);
         }
-        
+
+        [Test]
+        public void Decrease()
+        {
+            var before = _life.CurrentValue; //given
+            
+            _life.Damage(5); // Act
+            
+            Assert.Less( _life.CurrentValue, before); // then
+        }
+
+        [Test]
+        public void MinValueIs0()
+        {
+            _life.Damage(Int32.MaxValue);// Act
+            
+            //then assert
+            Assert.AreEqual(0,_life.CurrentValue);
+        }
+
+        [Test]
+        public void LifeStartsAt100()
+        {
+            
+            
+            //then assert
+            Assert.AreEqual(100,_life.CurrentValue);
+        }
     }
 }
