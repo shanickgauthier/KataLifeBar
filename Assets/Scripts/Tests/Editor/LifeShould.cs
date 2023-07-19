@@ -46,10 +46,16 @@ namespace Tests.Editor
         [Test]
         public void LifeStartsAt100()
         {
-            
-            
             //then assert
             Assert.AreEqual(100,_life.CurrentValue);
+        }
+
+        [Test]
+        public void MaxValueIs100()
+        {
+            _life.Heal(5000);
+            
+            Assert.AreEqual(100, _life.CurrentValue);
         }
     }
 }
